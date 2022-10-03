@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JWST-gifts</string>
+    <string name="main_activity_jwst_space_photos_subtitle">Space photos</string>
+    <string name="main_activity_jwst_presents_title">JWST presents</string>
 </resources>
