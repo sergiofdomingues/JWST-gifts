@@ -1,7 +1,9 @@
-package com.example.jwst_gifts.data.di
+package com.example.jwst_gifts.data.di.modules
 
-import com.example.jwst_gifts.data.network.service.JWSTService
-import com.example.jwst_gifts.data.network.response.ErrorResponse
+import com.example.jwst_gifts.data.di.qualifiers.CustomInterceptor
+import com.example.jwst_gifts.data.di.qualifiers.LogInterceptor
+import com.example.jwst_gifts.data.remote.response.ErrorResponse
+import com.example.jwst_gifts.data.remote.service.JWSTService
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -15,12 +17,14 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit.SECONDS
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Provides
+    @Singleton
     fun provideRetrofitBuilder(
         okHttpClient: OkHttpClient,
         moshi: Moshi
@@ -32,10 +36,14 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideOkhttpClient(interceptor: Interceptor): OkHttpClient {
+    @Singleton
+    fun provideOkhttpClient(
+        @CustomInterceptor jWSTInterceptor: JWSTInterceptor,
+        @LogInterceptor logInterceptor: Interceptor
+    ): OkHttpClient {
         val builder = OkHttpClient.Builder()
-            .addInterceptor(interceptor = interceptor)
-            .addInterceptor(interceptor = JWSTInterceptor())
+            .addInterceptor(interceptor = logInterceptor)
+            .addInterceptor(interceptor = jWSTInterceptor)
             .connectTimeout(30, SECONDS)
             .readTimeout(30, SECONDS)
             .callTimeout(30, SECONDS)
@@ -44,12 +52,15 @@ object NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun provideJWSTService(retrofit: Retrofit.Builder): JWSTService =
         retrofit
             .build()
             .create(JWSTService::class.java)
 
     @Provides
+    @Singleton
+    @LogInterceptor
     fun provideLogInterceptor(): Interceptor {
         val interceptor = HttpLoggingInterceptor()
         //if (BuildConfig.DEBUG) {
@@ -61,6 +72,11 @@ object NetworkModule {
         //}
         return interceptor
     }
+
+    @Provides
+    @Singleton
+    @CustomInterceptor
+    fun provideJWSTInterceptor(): JWSTInterceptor = JWSTInterceptor()
 
     class JWSTInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {

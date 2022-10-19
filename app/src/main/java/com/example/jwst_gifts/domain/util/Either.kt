@@ -1,4 +1,4 @@
-package com.example.jwst_gifts.data
+package com.example.jwst_gifts.domain.util
 
 sealed class Either<out L, out R> {
     data class Failure<out L>(val failureType: L) : Either<L, Nothing>()

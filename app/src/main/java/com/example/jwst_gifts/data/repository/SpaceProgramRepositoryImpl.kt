@@ -1,12 +1,13 @@
-package com.example.jwst_gifts.domain.repository
+package com.example.jwst_gifts.data.repository
 
-import com.example.jwst_gifts.data.Either
-import com.example.jwst_gifts.data.Failure
-import com.example.jwst_gifts.data.Failure.RequestInProgress
-import com.example.jwst_gifts.data.repository.SpaceProgramRepository
-import com.example.jwst_gifts.data.network.service.JWSTService
+import com.example.jwst_gifts.domain.util.Failure
+import com.example.jwst_gifts.domain.util.Failure.RequestInProgress
+import com.example.jwst_gifts.data.mappers.toListOfSpacePrograms
+import com.example.jwst_gifts.data.remote.service.JWSTService
 import com.example.jwst_gifts.domain.model.SpaceProgram
-import com.example.jwst_gifts.data.network.response.SpaceProgramsResponse
+import com.example.jwst_gifts.data.remote.response.SpaceProgramsResponse
+import com.example.jwst_gifts.domain.repository.SpaceProgramRepository
+import com.example.jwst_gifts.domain.util.Either
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
@@ -32,7 +33,7 @@ class SpaceProgramRepositoryImpl @Inject constructor(private val spaceProgramSer
                 return when (val response =
                     requestLaunches(page = if (state is LoadState.HasNext) state.nextPage else STARTING_PAGE_INDEX)) {
                     is Either.Success -> {
-                        val data = response.data.toModel()
+                        val data = response.data.toListOfSpacePrograms()
                         if (data.size < PAGE_SIZE) {
                             loadState = LoadState.Done
                         } else {

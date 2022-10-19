@@ -1,6 +1,6 @@
-package com.example.jwst_gifts.data.network.service
+package com.example.jwst_gifts.data.remote.service
 
-import com.example.jwst_gifts.data.network.response.SpaceProgramsResponse
+import com.example.jwst_gifts.data.remote.response.SpaceProgramsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

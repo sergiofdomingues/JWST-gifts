@@ -1,10 +1,10 @@
-package com.example.jwst_gifts.domain.repository
+package com.example.jwst_gifts.data.repository
 
-import com.example.jwst_gifts.data.Either
-import com.example.jwst_gifts.data.Failure
-import com.example.jwst_gifts.data.Failure.NetworkConnection
-import com.example.jwst_gifts.data.Failure.UnexpectedFailure
-import com.example.jwst_gifts.data.network.response.ErrorResponse
+import com.example.jwst_gifts.domain.util.Failure
+import com.example.jwst_gifts.domain.util.Failure.NetworkConnection
+import com.example.jwst_gifts.domain.util.Failure.UnexpectedFailure
+import com.example.jwst_gifts.data.remote.response.ErrorResponse
+import com.example.jwst_gifts.domain.util.Either
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers

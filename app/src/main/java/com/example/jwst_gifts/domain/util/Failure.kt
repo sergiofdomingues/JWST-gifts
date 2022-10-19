@@ -1,4 +1,4 @@
-package com.example.jwst_gifts.data
+package com.example.jwst_gifts.domain.util
 
 sealed class Failure(val errorMessage: String? = null) {
 

@@ -1,6 +1,6 @@
 package com.example.jwst_gifts.domain.model
 
-import com.example.jwst_gifts.data.network.response.DetailsResponse
+import com.example.jwst_gifts.data.remote.response.DetailsResponse
 
 data class SpaceProgram(
     val id: String,

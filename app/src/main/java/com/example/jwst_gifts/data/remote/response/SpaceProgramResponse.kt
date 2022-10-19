@@ -1,6 +1,5 @@
-package com.example.jwst_gifts.data.network.response
+package com.example.jwst_gifts.data.remote.response
 
-import com.example.jwst_gifts.domain.model.SpaceProgram
 import com.squareup.moshi.Json
 
 data class SpaceProgramResponse(
@@ -11,17 +10,4 @@ data class SpaceProgramResponse(
     @field:Json(name = "observation_id") val observationId: String? = null,
     @field:Json(name = "program") val program: Int? = null,
     @field:Json(name = "thumbnail") val thumbnail: String? = null
-) {
-    fun toModel(): SpaceProgram? {
-        return if (id == null || location == null) null
-        else SpaceProgram(
-            id = id,
-            details = details,
-            fileType = fileType,
-            imageUrl = location,
-            observationId = observationId,
-            program = program,
-            thumbnail = thumbnail
-        )
-    }
-}
+)

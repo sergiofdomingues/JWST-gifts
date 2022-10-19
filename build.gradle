@@ -1,12 +1,12 @@
 buildscript {
     ext {
-        hilt_version = '2.40'
-        retrofit_version = '2.9.0'
-        lifecycle_version = '2.3.1'
-        retrofit_version = '2.9.0'
-        retrofit_adapter_version = '4.9.2'
+        hiltVersion = '2.44'
+        retrofitVersion = '2.9.0'
+        lifecycleVersion = '2.3.1'
+        retrofitVersion = '2.9.0'
+        retrofitAdapterVersion = '4.9.2'
         supportLibVersion = '1.4.0'
-        coreVersion = '1.7.0'
+        kotlinVersion = '1.7.20'
         recyclerViewVersion = '1.2.1'
         constraintLayoutVersion = '2.1.2'
         materialVersion = '1.4.0'
@@ -17,9 +17,9 @@ buildscript {
         coroutines = '1.5.2'
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.3"
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     }
 }
 

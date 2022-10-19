@@ -1,8 +1,8 @@
-package com.example.jwst_gifts.data.repository
+package com.example.jwst_gifts.domain.repository
 
-import com.example.jwst_gifts.data.Either
-import com.example.jwst_gifts.data.Failure
+import com.example.jwst_gifts.domain.util.Failure
 import com.example.jwst_gifts.domain.model.SpaceProgram
+import com.example.jwst_gifts.domain.util.Either
 import kotlinx.coroutines.flow.Flow
 
 interface SpaceProgramRepository {

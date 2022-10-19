@@ -1,4 +1,4 @@
-package com.example.jwst_gifts.data.network.response
+package com.example.jwst_gifts.data.remote.response
 
 import com.squareup.moshi.Json
 
